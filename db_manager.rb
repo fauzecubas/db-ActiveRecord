@@ -31,6 +31,18 @@ def parse_attributes(args)
   hash
 end
 
+def parse_attributes_id(parts)
+  attributes = {}
+  parts.each do |part|
+    key, value = part.split('=')
+    # Remover as aspas se houver
+    value = value.gsub('"', '') if value
+    attributes[key] = value
+  end
+  attributes
+end
+
+
 # Função para processar o comando
 def process_command(command)
   parts = command.split(' ')
@@ -54,10 +66,19 @@ def process_command(command)
     end
   when 'altera'
     model = Object.const_get(table.capitalize)
-    record = model.find_by(attributes)
+    attributes = parse_attributes_id(parts[2..-1])
+    if attributes['id']
+      attributes['id'] = attributes['id'].to_i
+    end
+    record = model.find_by(id: attributes['id'])
+  
     if record
-      record.update(attributes)
-      puts "#{table.capitalize} alterado com sucesso!"
+      attributes.delete('id')
+      if record.update(attributes)
+        puts "#{table.capitalize} alterado com sucesso!"
+      else
+        puts "Erro ao alterar #{table.capitalize}. Verifique os atributos passados."
+      end
     else
       puts "#{table.capitalize} não encontrado para alteração."
     end
@@ -92,7 +113,7 @@ puts "atributo = valor indica o valor do atributo envolvido na operação"
 
 puts "EXEMPLOS"
 puts "- insere person first_name=\"Tove\" last_name=\"Svendson\" address=\"Borgvn 23\" city=\"Sandnes\"):"
-puts "- altera person first_name=\"Novo Nome\" last_name=\"Sobrenome Atualizado\" id=\"1\""
+puts "- altera person first_name=\"NovoNome\" last_name=\"SobrenomeAtualizado\" id=1"
 puts "- exclui person first_name=\"Nome Alvo\""
 puts "- lista person"
 

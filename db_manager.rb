@@ -12,6 +12,7 @@ require_relative 'app/models/person'
 require_relative 'app/models/profile'
 require_relative 'app/models/post'
 require_relative 'app/models/tag'
+require_relative 'app/models/post_tag'
 
 # Função para processar os atributos
 def parse_attributes(args)

@@ -17,3 +17,9 @@ Post N:N Tags - Post tem e pertence a muitas Tags
 git clone <repo>
 cd meu_projeto
 bundle install
+
+## Comandos
+
+rake db:create   # Cria o banco de dados
+rake db:migrate  # Executa as migrations
+rake db:seed     # Popula o banco com os seeds

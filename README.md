@@ -23,3 +23,4 @@ bundle install
 rake db:create   # Cria o banco de dados
 rake db:migrate  # Executa as migrations
 rake db:seed     # Popula o banco com os seeds
+ruby db_manager.rb # Lista comandos e permite que o usuário execute-os

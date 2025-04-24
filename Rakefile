@@ -13,8 +13,9 @@ namespace :db do
 
   desc "Executa as migrations"
   task :migrate do
-    ActiveRecord::MigrationContext.new('db/migrate', ActiveRecord::SchemaMigration).migrate
-  end
+    context = ActiveRecord::MigrationContext.new('db/migrate')
+    context.migrate
+  end  
 
   desc "Popula o banco com os seeds"
   task :seed do

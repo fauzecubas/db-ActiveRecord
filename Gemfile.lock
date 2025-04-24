@@ -28,19 +28,15 @@ GEM
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     logger (1.7.0)
-    mini_portile2 (2.8.8)
     minitest (5.25.5)
     rake (13.2.1)
     securerandom (0.4.1)
-    sqlite3 (2.6.0)
-      mini_portile2 (~> 2.8.0)
     sqlite3 (2.6.0-x86_64-linux-gnu)
     timeout (0.4.3)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
 
 PLATFORMS
-  ruby
   x86_64-linux-gnu
 
 DEPENDENCIES

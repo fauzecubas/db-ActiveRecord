@@ -35,6 +35,10 @@ end
 def process_command(command)
   parts = command.split(' ')
 
+  if parts.length < 2
+    raise ArgumentError, "Comando inválido. É necessário pelo menos uma operação e o nome da tabela (ex: 'lista usuarios')."
+  end
+
   operation = parts[0]
   table = parts[1].downcase # Convertendo para minúsculo para garantir que a tabela seja corretamente acessada
   attributes = parse_attributes(parts[2..-1])
@@ -74,7 +78,7 @@ def process_command(command)
       puts  # Adiciona uma linha em branco após cada registro
     end  
   else
-    puts "Comando inválido."
+    puts "Comando inválido. Comandos válidos: insere, altera, exclui e lista"
   end
 end
 
@@ -87,10 +91,10 @@ puts "{ ... } indica repetição"
 puts "atributo = valor indica o valor do atributo envolvido na operação"
 
 puts "EXEMPLOS"
-puts "insere person first_name=\"Tove\" last_name=\"Svendson\" address=\"Borgvn 23\" city=\"Sandnes\"):"
-puts "altera person first_name=\"Novo Nome\" last_name=\"Sobrenome Atualizado\" id=\"1\""
-puts "exclui person first_name=\"Nome Alvo\""
-puts "lista person"
+puts "- insere person first_name=\"Tove\" last_name=\"Svendson\" address=\"Borgvn 23\" city=\"Sandnes\"):"
+puts "- altera person first_name=\"Novo Nome\" last_name=\"Sobrenome Atualizado\" id=\"1\""
+puts "- exclui person first_name=\"Nome Alvo\""
+puts "- lista person"
 
 # Loop principal para processar múltiplos comandos
 loop do

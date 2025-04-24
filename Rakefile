@@ -4,6 +4,11 @@ require 'erb'
 require 'rake'
 require_relative './config/environment'
 
+DB_CONFIG = {
+  adapter: 'sqlite3',
+  database: 'db/development.sqlite3'
+}
+
 namespace :db do
   desc "Cria o banco de dados"
   task :create do

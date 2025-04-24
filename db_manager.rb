@@ -13,7 +13,7 @@ require_relative 'app/models/profile'
 require_relative 'app/models/post'
 require_relative 'app/models/tag'
 
-# Função para processar o comando
+# Função para processar os atributos
 def parse_attributes(args)
   hash = {}
 
@@ -30,6 +30,7 @@ def parse_attributes(args)
   hash
 end
 
+# Função para processar o comando
 def process_command(command)
   parts = command.split(' ')
 
@@ -89,6 +90,15 @@ puts "insere person first_name=\"Tove\" last_name=\"Svendson\" address=\"Borgvn 
 puts "altera person first_name=\"Novo Nome\" last_name=\"Sobrenome Atualizado\" id=\"1\""
 puts "exclui person first_name=\"Nome Alvo\""
 puts "lista person"
-puts "Digite o comando abaixo:"
-command = gets.chomp
-process_command(command)
+
+# Loop principal para processar múltiplos comandos
+loop do
+  puts "Digite o comando abaixo (ou 'exit' para sair):"
+  command = gets.chomp
+
+  break if command.downcase == 'exit'  # Se o comando for 'exit', o loop será interrompido
+
+  process_command(command)  # Processa o comando fornecido
+end
+
+puts "Programa encerrado."
